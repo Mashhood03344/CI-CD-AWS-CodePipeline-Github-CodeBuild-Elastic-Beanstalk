@@ -17,7 +17,6 @@ phases:
 artifacts:
   files:
     - nodejs-app.zip
-    - appspec.yml  # Include if you're using CodeDeploy
   discard-paths: yes
 
 env:
