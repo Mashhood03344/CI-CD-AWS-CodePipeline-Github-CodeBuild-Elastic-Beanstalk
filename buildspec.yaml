@@ -5,21 +5,23 @@ phases:
     commands:
       - echo Installing dependencies...
       - npm install
+
+  pre_build:
+    commands:
+      - echo Running pre-build scripts...
+
   build:
     commands:
-      - echo Build started on `date`
-      - npm run build  # Use this if you have a build script
+      - echo Building the application...
+      - npm run build
+
   post_build:
     commands:
-      - echo Build completed on `date`
-      - zip -r nodejs-app.zip *  # Zip the application for deployment
-      - echo Zipping completed
+      - echo Zipping application for Elastic Beanstalk deployment...
+      - zip -r nodejs-app.zip * .[^.]*
+
 artifacts:
   files:
     - nodejs-app.zip
+
   discard-paths: yes
-
-env:
-  variables:
-    NODE_ENV: production  # Set environment variables if needed
-
