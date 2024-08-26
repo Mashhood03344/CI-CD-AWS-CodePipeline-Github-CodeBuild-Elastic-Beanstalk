@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+      - npm install
+  build:
+    commands:
+      - echo Build started on `date`
+      - npm run build  # Use this if you have a build script
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - zip -r nodejs-app.zip *  # Zip the application for deployment
+      - echo Zipping completed
+artifacts:
+  files:
+    - nodejs-app.zip
+    - appspec.yml  # Include if you're using CodeDeploy
+  discard-paths: yes
+
+env:
+  variables:
+    NODE_ENV: production  # Set environment variables if needed
+
